@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package retriever;
+
+option go_package = "github.com/shashwatssp/deeprecall/api/proto/retriever";
+
+service RetrieverService {
+  rpc Retrieve(RetrieveRequest) returns (RetrieveResponse);
+  rpc IndexDocument(IndexRequest) returns (IndexResponse);
+  rpc GetStats(StatsRequest) returns (StatsResponse);
+}
+
+message RetrieveRequest {
+  string query = 1;
+  int32 top_k = 2;
+  float similarity_threshold = 3;
+}
+
+message RetrieveResponse {
+  repeated RetrievalResult results = 1;
+}
+
+message RetrievalResult {
+  string content = 1;
+  float score = 2;
+  string document_id = 3;
+  map<string, string> metadata = 4;
+}
+
+message IndexRequest {
+  string file_path = 1;
+  bool force_reindex = 2;
+}
+
+message IndexResponse {
+  bool success = 1;
+  string message = 2;
+  int32 chunks_created = 3;
+}
+
+message StatsRequest {}
+
+message StatsResponse {
+  int32 total_documents = 1;
+  int32 total_chunks = 2;
+  int64 cache_size_bytes = 3;
+}

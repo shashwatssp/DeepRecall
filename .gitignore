@@ -1,0 +1,282 @@
+# ============================================
+# DeepRecall .gitignore
+# ============================================
+
+# ============================================
+# Binaries & Executables
+# ============================================
+deeprecall
+deeprecall.exe
+deeprecall-*
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# ============================================
+# Go Build & Test Files
+# ============================================
+# Build directory
+/build/
+/dist/
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+coverage.txt
+coverage.html
+*.coverprofile
+
+# Go workspace file
+go.work
+go.work.sum
+
+# ============================================
+# Dependencies & Vendor
+# ============================================
+/vendor/
+/Godeps/
+
+# ============================================
+# IDE & Editors
+# ============================================
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDEs (GoLand, IntelliJ)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw[a-z]
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Atom
+.atom/
+
+# ============================================
+# Operating System Files
+# ============================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Linux
+*~
+.directory
+.Trash-*
+.nfs*
+
+# ============================================
+# Application Specific
+# ============================================
+# Context folder (user's private documents)
+/context/*
+!/context/.gitkeep
+!/context/README.md
+!/context/sample.txt
+
+# Cache directories
+/cache/*
+!/cache/.gitkeep
+!/cache/embeddings/.gitkeep
+/cache/embeddings/*
+!/cache/embeddings/.gitkeep
+/cache/tts/*
+
+# Logs
+/logs/
+*.log
+*.log.*
+
+# Models (large binary files)
+/models/*.bin
+/models/*.gguf
+/models/*.pt
+/models/*.pth
+/models/*.onnx
+/models/*.h5
+!/models/.gitkeep
+!/models/README.md
+
+# Temporary files
+/tmp/
+/temp/
+*.tmp
+
+# ============================================
+# Configuration & Secrets
+# ============================================
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Config files with secrets
+config/config.local.yaml
+config/config.prod.yaml
+config/secrets.yaml
+config/*.secret.*
+
+# API keys and credentials
+*.key
+*.pem
+*.cert
+*.crt
+secrets/
+credentials/
+
+# ============================================
+# Database Files
+# ============================================
+*.db
+*.sqlite
+*.sqlite3
+/cache/vectorstore.db
+/data/*.db
+
+# ============================================
+# Protobuf Generated Files
+# ============================================
+# Keep proto definitions, ignore generated
+# api/proto/*.pb.go
+# api/proto/*_grpc.pb.go
+# Uncomment above if you want to ignore generated proto files
+
+# ============================================
+# Audio & Media Files (if testing)
+# ============================================
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+!/test/fixtures/*.wav
+
+# ============================================
+# Documentation Build
+# ============================================
+/docs/_build/
+/docs/.doctrees/
+/site/
+
+# ============================================
+# Backup & Archive Files
+# ============================================
+*.bak
+*.backup
+*.orig
+*.rej
+*.~*
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+*.7z
+
+# ============================================
+# Performance & Profiling
+# ============================================
+*.prof
+*.pprof
+cpu.prof
+mem.prof
+profile.out
+
+# ============================================
+# CI/CD
+# ============================================
+.github/workflows/*.local.yml
+
+# ============================================
+# Docker
+# ============================================
+# Uncomment if using Docker but want to ignore volumes
+# docker-compose.override.yml
+# .dockerignore
+
+# ============================================
+# Miscellaneous
+# ============================================
+# Node modules (if frontend added later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if any Python tools used)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+
+# Air (live reload tool for Go)
+tmp/
+.air.toml
+
+# Task runner
+.task/
+
+# ============================================
+# Project Specific Patterns
+# ============================================
+# Test data
+/testdata/output/
+/testdata/temp/
+
+# Local scripts
+*.local.sh
+*.local.ps1
+local-*
+
+# User notes
+NOTES.md
+TODO.local.md

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package tts;
+
+option go_package = "github.com/shashwatssp/deeprecall/api/proto/tts";
+
+service TTSService {
+  rpc Synthesize(SynthesizeRequest) returns (SynthesizeResponse);
+}
+
+message SynthesizeRequest {
+  string text = 1;
+  string language = 2;
+  float speed = 3;
+}
+
+message SynthesizeResponse {
+  bytes audio_data = 1;
+  string format = 2;
+  int32 sample_rate = 3;
+}

@@ -1,0 +1,127 @@
+# DeepRecall Configuration
+app:
+  name: "DeepRecall"
+  version: "1.0.0"
+  log_level: "info"  # debug, info, warn, error
+
+# Audio Configuration
+audio:
+  sample_rate: 16000
+  channels: 1
+  bit_depth: 16
+  buffer_size: 8192
+  device_name: "default"  # Set to specific device or "default"
+
+# Wake Word Detection
+wake_word:
+  enabled: true
+  word: "Sir"
+  case_sensitive: false
+  match_type: "prefix"  # prefix, exact, contains
+
+# Speech-to-Text (STT)
+stt:
+  provider: "whisper"  # whisper, google, aws
+  model_path: "./models/ggml-base.bin"  # Download from: https://huggingface.co/ggerganov/whisper.cpp
+  language: "auto"  # auto, en, hi, or specific language code
+  threads: 4
+  translate: false
+  max_duration_seconds: 30
+
+# Text-to-Speech (TTS)
+tts:
+  provider: "google"  # google, elevenlabs, local
+  language: "en"
+  speed: 1.0
+  cache_enabled: true
+  cache_dir: "./cache/tts"
+
+# Context & RAG Configuration
+context:
+  folder: "./context"
+  watch_interval_seconds: 5
+  supported_extensions:
+    - ".pdf"
+    - ".txt"
+    - ".md"
+  
+  # Chunking Strategy
+  chunking:
+    method: "recursive"  # fixed, recursive, semantic
+    chunk_size: 512
+    chunk_overlap: 128
+    min_chunk_size: 100
+
+  # Embeddings
+  embeddings:
+    provider: "openai"  # openai, cohere, local
+    model: "text-embedding-3-small"
+    dimension: 1536
+    cache_dir: "./cache/embeddings"
+    batch_size: 32
+
+# Vector Store / Retrieval
+retrieval:
+  top_k: 5
+  similarity_threshold: 0.7
+  rerank: true
+  storage_backend: "bbolt"  # bbolt (local), qdrant, weaviate
+  db_path: "./cache/vectorstore.db"
+
+# LLM Configuration
+llm:
+  provider: "openai"  # openai, anthropic, local
+  model: "gpt-4-turbo-preview"
+  api_key: "${OPENAI_API_KEY}"  # Use environment variable
+  base_url: "https://api.openai.com/v1"
+  max_tokens: 1000
+  temperature: 0.7
+  timeout_seconds: 30
+  stream: false
+
+# System Prompts
+prompts:
+  system: |
+    You are DeepRecall, an intelligent AI assistant with access to the user's personal knowledge base.
+    Always provide accurate, concise, and helpful responses.
+    When answering from context, be specific and cite relevant information.
+    If you don't know something, say so clearly.
+  
+  context_template: |
+    Use the following context to answer the user's question:
+    
+    {context}
+    
+    Question: {question}
+    
+    Answer:
+
+# Concurrency & Performance
+performance:
+  max_concurrent_requests: 10
+  worker_pool_size: 4
+  request_timeout_seconds: 60
+  enable_metrics: true
+
+# gRPC Configuration
+grpc:
+  audio_port: 50051
+  stt_port: 50052
+  tts_port: 50053
+  retriever_port: 50054
+  llm_port: 50055
+  orchestrator_port: 50056
+  max_receive_message_size: 104857600  # 100MB
+  max_send_message_size: 104857600
+
+# Multi-language Support
+languages:
+  supported:
+    - code: "en"
+      name: "English"
+    - code: "hi"
+      name: "Hindi"
+    - code: "hi-en"
+      name: "Hinglish"
+  auto_detect: true
+  fallback: "en"
