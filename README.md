@@ -16,32 +16,20 @@
 
 ## 📁 Project Structure
 
-deeprecall/
-├── cmd/
-│ └── deeprecall/
-│ └── main.go # Application entrypoint
-├── internal/
-│ ├── config/
-│ │ └── config.go # Configuration management
-│ ├── services/
-│ │ ├── audio/ # Audio capture & playback
-│ │ ├── stt/ # Speech-to-Text (Whisper)
-│ │ ├── tts/ # Text-to-Speech
-│ │ ├── context/ # Document parsing, chunking, embedding
-│ │ ├── retriever/ # Vector store & semantic search
-│ │ ├── llm/ # LLM client (OpenAI, etc.)
-│ │ └── orchestrator/ # Main orchestration logic
-│ ├── models/ # Data models
-│ └── utils/ # Utilities (logger, hash)
-├── api/proto/ # gRPC protocol definitions
-├── config/
-│ └── config.yaml # Main configuration file
-├── context/ # Place your PDFs and text files here
-├── cache/
-│ └── embeddings/ # Cached embeddings storage
-├── go.mod # Go module definition
-├── Makefile # Build automation
-└── README.md # This file
+- `cmd/deeprecall/main.go` — Application entrypoint  
+- `internal/config` — Configuration loading & validation  
+- `internal/services/audio` — Microphone capture & speaker playback  
+- `internal/services/stt` — Speech-to-text (Whisper)  
+- `internal/services/tts` — Text-to-speech  
+- `internal/services/context` — PDF/text parsing, chunking, embedding  
+- `internal/services/retriever` — Vector store & semantic search  
+- `internal/services/llm` — LLM clients (OpenAI, etc.)  
+- `internal/services/orchestrator` — Main control loop  
+- `api/proto` — gRPC definitions  
+- `context/` — User documents (PDF, text files)  
+- `cache/embeddings` — Cached vector embeddings  
+
+
 
 text
 
